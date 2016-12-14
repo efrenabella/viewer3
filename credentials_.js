@@ -22,8 +22,8 @@ var credentials ={
 	credentials: {
 		// Replace placeholder below by the Consumer Key and Consumer Secret you got from
 		// http://developer.autodesk.com/ for the production server
-		client_id: process.env.CONSUMER_KEY || 'CTuRAWWR5brXUfjAdGMfbRlNk1IFtPPA',
-		client_secret: process.env.CONSUMER_SECRET || 'DAsCuQpP6YaGlzon',
+		client_id: process.env.CONSUMER_KEY || 'F2uqouAaoWRhkNFAvBPlspfBNnwKaY7k',
+		client_secret: process.env.CONSUMER_SECRET || 'FVvynS91c5PMAwYa',
 		grant_type: 'client_credentials',
 		scope: 'data:read', // Setup the needed scopes for authorizing your Token
 		callbackUrl: process.env.CALLBACK_URL || 'http://null.net'
