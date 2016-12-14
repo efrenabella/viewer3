@@ -1,14 +1,9 @@
-<!DOCTYPE html>
-<html class="no-js" lang="">
-
 <head>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=no" />
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Forge Viewer Sample</title>
-
+    <!-- The Viewer CSS -->
+    <link rel="stylesheet" href="https://developer.api.autodesk.com/viewingservice/v1/viewers/style.min.css" type="text/css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="/css/main.css">
@@ -25,21 +20,207 @@
     <script src="https://developer.api.autodesk.com/viewingservice/v1/viewers/viewer3D.min.js"></script>
     <script src="https://rawgit.com/Developer-Autodesk/library-javascript-view.and.data.api/master/js/Autodesk.ADN.Toolkit.Viewer.js"></script>
     <script src="/js/index.js"></script>
-
+    <!-- Developer CSS -->
+    <style>
+        body {
+            margin: 0;
+        }
+        #MyViewerDiv {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            background-color: #F0F8FF;
+        }
+    </style>
 </head>
+<body>
 
-<body onload="initialize()">
-    <div class="container">
-        <!-- This is where your viewer should attach -->
-        <div class="center-block" id="viewerDiv"></div>
+    <!-- The Viewer will be instantiated here -->
+    <div id="MyViewerDiv"></div>
 
-        <!-- Extension Buttons -->
-        
-        <div class="myButton" id="background" onclick="loadChangeBackground()">Load Background</div>
-        <div class="myButton" id="background" onclick="unloadChangeBackground()">Unload Background</div>
-        
-    
-    </div><!-- /container -->
+    <!-- The Viewer JS -->
+    <script src="https://developer.api.autodesk.com/viewingservice/v1/viewers/three.min.js"></script>
+    <script src="https://developer.api.autodesk.com/viewingservice/v1/viewers/viewer3D.min.js"></script>
 
+    <!-- Developer JS -->
+    <script>
+        var viewer;
+		var lmvDoc;
+		var viewables;
+		var indexViewable;
+        //var options = {
+        //    env: 'AutodeskProduction',
+        //    accessToken: 'XN9EWndOgEQMSHqK6cl1KBWeQR7b';//'<YOUR_APPLICATION_TOKEN>'
+        //};
+		var options = {
+			env: 'AutodeskProduction',
+			getAccessToken: function(onGetAccessToken) {
+					//
+					// TODO: Replace static access token string below with call to fetch new token from your backend
+					// Both values are provided by Forge's Authentication (OAuth) API.
+					//
+					// Example Forge's Authentication (OAuth) API return value:
+					// {
+					//    "access_token": "<YOUR_APPLICATION_TOKEN>",
+					//    "token_type": "Bearer",
+					//    "expires_in": 86400
+					// }
+					//
+					//USE TUNNEL_E TEST PROJ
+					var accessToken = 'qYlF7MAfLiowGBsRZ8BV2iKlgYIl';//'XN9EWndOgEQMSHqK6cl1KBWeQR7b';
+					var expireTimeSeconds = 86400;
+					onGetAccessToken(accessToken, expireTimeSeconds);
+				}
+		}
+        var documentId = 'dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6bW9kZWwyMDE2LTEyLTE0LTE5LTAyLTEzLXF5bGY3bWFmbGlvd2dic3J6OGJ2MmlrbGd5aWwvMTY2MTE1M19Eb21haW5UdW5uZWxfMjAxNjEwMTQtRDE3LUQyMC5ud2Q';
+				//'urn:dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6bW9kZWwyMDE2LTEyLTEzLTA0LTU3LTMzLXhuOWV3bmRvZ2VxbXNocWs2Y2wxa2J3ZXFyN2IvMTY2MTE1M19Eb21haW5UdW5uZWxfMjAxNjEwMTQtRDE3LUQyMC5ud2Q';//<YOUR_URN_ID>
+			
+        Autodesk.Viewing.Initializer(options, function onInitialized(){
+            Autodesk.Viewing.Document.load(documentId, onDocumentLoadSuccess, onDocumentLoadFailure);
+        });
+
+        /**
+        * Autodesk.Viewing.Document.load() success callback.
+        * Proceeds with model initialization.
+        */
+		/*older version
+        function onDocumentLoadSuccess(doc) {
+
+            // A document contains references to 3D and 2D viewables.
+            var viewables = Autodesk.Viewing.Document.getSubItemsWithProperties(doc.getRootItem(), {'type':'geometry'}, true);
+            if (viewables.length === 0) {
+                console.error('Document contains no viewables.');
+                return;
+            }
+
+            // Choose any of the avialble viewables
+            var initialViewable = viewables[0];
+            var svfUrl = doc.getViewablePath(initialViewable);
+            var modelOptions = {
+                sharedPropertyDbPath: doc.getPropertyDbPath()
+            };
+
+            var viewerDiv = document.getElementById('MyViewerDiv');
+            viewer = new Autodesk.Viewing.Private.GuiViewer3D(viewerDiv);
+            viewer.start(svfUrl, modelOptions, onLoadModelSuccess, onLoadModelError);
+        }*/
+		/**
+		 * Autodesk.Viewing.Document.load() success callback.
+		 * Proceeds with model initialization.
+		 */
+		function onDocumentLoadSuccess(doc) {
+
+			// A document contains references to 3D and 2D viewables.
+			viewables = Autodesk.Viewing.Document.getSubItemsWithProperties(doc.getRootItem(), {'type':'geometry'}, true);
+			if (viewables.length === 0) {
+				console.error('Document contains no viewables.');
+				return;
+			}
+
+			// Create Viewer instance and load model.
+			var viewerDiv = document.getElementById('MyViewerDiv');
+			viewer = new Autodesk.Viewing.Private.GuiViewer3D(viewerDiv);
+			var errorCode = viewer.start();
+
+			// Check for initialization errors.
+			if (errorCode) {
+				console.error('viewer.start() error - errorCode:' + errorCode);
+				return;
+			}
+
+			// Choose any of the available viewables.
+			indexViewable = 0;
+			lmvDoc = doc;
+
+			// Everything is set up, load the model.
+			loadModel();
+		}
+
+        /**
+         * Autodesk.Viewing.Document.load() failuire callback.
+         */
+        function onDocumentLoadFailure(viewerErrorCode) {
+            console.error('onDocumentLoadFailure() - errorCode:' + viewerErrorCode);
+        }
+
+        /**
+         * viewer.loadModel() success callback.
+         * Invoked after the model's SVF has been initially loaded.
+         * It may trigger before any geometry has been downloaded and displayed on-screen.
+         */
+        function onLoadModelSuccess(model) {
+            console.log('onLoadModelSuccess()!');
+            console.log('Validate model loaded: ' + (viewer.model === model));
+            console.log(model);
+			console.log(viewer);
+			var id = model.getModelId();
+			console.log(id);
+			viewer.getProperties(id,onGetPropertiesSuccess,onGetPropertiesError);
+			viewer.getObjectTree(onObjTreeSuccess,onObjTreeError);
+			var frags = model.getFragmentList();
+			console.log(frags);
+			//var ids = [5];
+			//model.getBulkProperties(ids, ongetBulkPropertiesSuccess,ongetBulkPropertiesError);
+        }
+		
+		function ongetBulkPropertiesSuccess(bProps){
+			console.log(bProps);
+		}
+		function ongetBulkPropertiesError(err){
+			console.error('ongetBulkPropertiesError() - errorCode:' + err);
+		}
+		
+		function onGetPropertiesSuccess(props){
+			console.log(props); 
+		}
+		function onGetPropertiesError(objTreeError){
+			console.error('onGetPropertiesError() - errorCode:' + onGetPropertiesError);
+		}
+		function onObjTreeSuccess(dat){
+			console.log(dat);
+			var childrn = dat.nodeAccess.children;
+			//console.log(childrn);
+			var ids = dat.nodeAccess.dbIdToIndex;
+			
+			viewer.getProperties(ids[2],OnGetProperties_ofOne_Success,OnGetProperties_ofOne_Error);
+			var queue = Object.values(ids);
+			console.log(queue);
+			for (var n = 0; n < queue.length; n++){
+				//console.log(queue[n]);
+				viewer.getProperties(queue[n],OnGetProperties_ofOne_Success,OnGetProperties_ofOne_Error);
+			}
+		}
+		
+		function OnGetProperties_ofOne_Success(props){
+			console.log(props);
+			//if(props.name.contains("Cracks") ) {
+				//console.log(props.name);
+			//}
+			//for(var j = 0; j < props.length; j++){
+				
+			//}
+		}
+		function OnGetProperties_ofOne_Error(err){
+			console.error('OnGetProperties_ofOne_Error() - errorCode:' + err);
+		}
+		function onObjTreeError(objTreeError){
+			console.error('onObjTreeError() - errorCode:' + objTreeError);
+		}
+        /**
+         * viewer.loadModel() failure callback.
+         * Invoked when there's an error fetching the SVF file.
+         */
+        function onLoadModelError(viewerErrorCode) {
+            console.error('onLoadModelError() - errorCode:' + viewerErrorCode);
+        }
+
+		function loadModel() {
+			var initialViewable = viewables[indexViewable];
+			var svfUrl = lmvDoc.getViewablePath(initialViewable);
+			var modelOptions = {
+				sharedPropertyDbPath: lmvDoc.getPropertyDbPath()
+			};
+			viewer.loadModel(svfUrl, modelOptions, onLoadModelSuccess, onLoadModelError);
+		}
+    </script>
 </body>
-</html>
