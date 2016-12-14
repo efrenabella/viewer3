@@ -16,7 +16,7 @@
 // UNINTERRUPTED OR ERROR FREE.
 /////////////////////////////////////////////////////////////////////////////////
 
- var defaultUrn = 'dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6bW9kZWwyMDE2LTEyLTAyLTA1LTQwLTM4LXh1bHhhYWFhcGZwdnY5MWF0cWlqdW1tZTE4ZTkvQlVSTkxFWV8yMDE2MTEyNS5ud2Q';
+ var defaultUrn = 'dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6bW9kZWwyMDE2LTEyLTE0LTIyLTAxLTQ3LXF5bGY3bWFmbGlvd2dic3J6OGJ2MmlrbGd5aWwvRG9tYWluVHVubmVsXzIwMTYxMDE0LUQxNy1EMjAubndk';
  var tokenurl = window.location.protocol + '//' + window.location.host + '/api/token';
 
 /////////////////////////////////////////////////////////////////////////////////
