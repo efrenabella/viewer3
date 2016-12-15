@@ -16,8 +16,7 @@
 // UNINTERRUPTED OR ERROR FREE.
 /////////////////////////////////////////////////////////////////////////////////
 
- var defaultUrn = 'dXJuOmFkc2sud2lwcHJvZDpmcy5mb2xkZXI6Y28uVlJFcklUTE9UbDZQTW1DV2lMNjZyZw/DT68b91QTed29f43287f7ab819c1ef407e9f?show=viewer&viewState=NoIgbgDAdAjCA0IYGMCcBDAJgDgKzIFoAmAFgGZMCSAzAdiIICMBTTVAzExogNlWWox6PBDCi0etXLTJ8eMErhila8IWVgQe2HuUU7sMtbRLjlqGDpI9cEVNmzwiY3rmypaqEl9RkiX%2BCooImxyHghsMggQkhIItWNocJ4iaRIYX2iYXHhoCGsyMki%2BW0tUmDJcqD9woij7CGzcPylAvMaLVIcSGR5C-yJEAHsEUx4UiD847UmLVV5xFPTcZ1xvZqLAmB4odyjxxVQPI9pVAjyZHUkhcIgIJVwc9rrDaQkYCBlbbBgqk9deGFUrRJrkwb8QAhIYgEMAALpwoA';
-     //'dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6bW9kZWwyMDE2LTEyLTE0LTIyLTAxLTQ3LXF5bGY3bWFmbGlvd2dic3J6OGJ2MmlrbGd5aWwvRG9tYWluVHVubmVsXzIwMTYxMDE0LUQxNy1EMjAubndk';
+ var defaultUrn = 'dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6bW9kZWwyMDE2LTEyLTE0LTIyLTAxLTQ3LXF5bGY3bWFmbGlvd2dic3J6OGJ2MmlrbGd5aWwvRG9tYWluVHVubmVsXzIwMTYxMDE0LUQxNy1EMjAubndk';
  var tokenurl = window.location.protocol + '//' + window.location.host + '/api/token';
 
 /////////////////////////////////////////////////////////////////////////////////
