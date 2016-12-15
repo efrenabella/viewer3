@@ -107,7 +107,6 @@
 		 * Proceeds with model initialization.
 		 */
 function onDocumentLoadSuccess(doc) {
-	lmvDoc = doc;
 	// A document contains references to 3D and 2D viewables.
 	viewables = Autodesk.Viewing.Document.getSubItemsWithProperties(doc.getRootItem(), {'type':'geometry'}, true);
 	if (viewables.length === 0) {
@@ -127,6 +126,7 @@ function onDocumentLoadSuccess(doc) {
 	}
 
 	// Choose any of the available viewables.
+	lmvDoc = doc;
 	indexViewable = 0;
 	// Everything is set up, load the model.
 	loadModel();
