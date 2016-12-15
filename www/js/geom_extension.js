@@ -57,6 +57,17 @@ Autodesk.ADN.Viewing.Extension.MyExtension = function (viewer, options) {
 	});
 	console.log(objCol);
   }
+
+function getFragIdFromDbId(viewer, dbid) {
+	 var returnValue;
+	 var it = viewer.model.getData().instanceTree;
+	 it.enumNodeFragments(dbid, function (fragId) {
+	  console.log("dbId: " + dbid + " FragId : " + fragId);
+	  returnValue = fragId;
+	 }, false);
+	 return returnValue;
+}
+
 function OnGetProperties_ofOne_Success(props){
 	//if(props.name.contains("Cracks") ) {
 		//console.log(props.name);
@@ -78,9 +89,9 @@ function OnGetProperties_ofOne_Success(props){
 
 		if(name2.contains("Crack")){
 			console.log(props4);
+			getFragIdFromDbId(props4[0]);
 			props4.forEach(function(x) {
-			console.log(x);	
-		});
+			console.log(x);	});
 		}
 		//for(var k = 0;k < props4.length;k++){
 		//	console.log(props4[k]);	
