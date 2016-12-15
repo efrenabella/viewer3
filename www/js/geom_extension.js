@@ -60,7 +60,7 @@ Autodesk.ADN.Viewing.Extension.MyExtension = function (viewer, options) {
 
 function getFragIdFromDbId(viewer, dbid) {
 	 var returnValue;
-	 var it = viewer.model.getData().instanceTree;
+	 var it = _model.getData().instanceTree;
 	 it.enumNodeFragments(dbid, function (fragId) {
 	  console.log("dbId: " + dbid + " FragId : " + fragId);
 	  returnValue = fragId;
