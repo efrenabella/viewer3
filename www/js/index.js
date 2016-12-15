@@ -17,7 +17,7 @@
 /////////////////////////////////////////////////////////////////////////////////
 
  var defaultUrn = 'dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6bW9kZWwyMDE2LTEyLTE0LTIyLTAxLTQ3LXF5bGY3bWFmbGlvd2dic3J6OGJ2MmlrbGd5aWwvRG9tYWluVHVubmVsXzIwMTYxMDE0LUQxNy1EMjAubndk';
- var tokenurl = window.location.protocol + '//' + window.location.host + '/api/token';
+ var tokenurl = 'StASnJQMQbAYtDBNRKiJFo2B1vu8';//window.location.protocol + '//' + window.location.host + '/api/token';
 
 /////////////////////////////////////////////////////////////////////////////////
 //
