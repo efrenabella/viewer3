@@ -69,6 +69,7 @@ Autodesk.ADN.Viewing.Extension.MyExtension = function (viewer, options) {
 function getFragIdFromDbId(viewer, dbid) {
 	 var returnValue;
 	 var it = _model.getData().instanceTree;
+	 console.log(it);
 	 it.enumNodeFragments(dbid, function (fragId) {
 	  console.log("dbId: " + dbid + " FragId : " + fragId);
 	  returnValue = fragId;
@@ -98,7 +99,9 @@ function OnGetProperties_ofOne_Success(props){
 		if(name2.contains("Crack")){
 			console.log(props4);
 			props4.forEach(function(x) {
-			console.log(x);	});
+			console.log(x);	
+			getFragIdFromDbId(viewer, x);
+			});
 		}
 		//for(var k = 0;k < props4.length;k++){
 		//	console.log(props4[k]);	
