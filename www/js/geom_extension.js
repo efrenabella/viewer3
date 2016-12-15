@@ -40,8 +40,79 @@ Autodesk.ADN.Viewing.Extension.MyExtension = function (viewer, options) {
 
   function GeometryRetrieve(){
     console.log("retrive geoms here...");
+      //console.log(model);
+			//console.log(viewer);
+			var id = model.getModelId();
+			console.log(id);
+			viewer.getProperties(id,onGetPropertiesSuccess,onGetPropertiesError);
+			viewer.getObjectTree(onObjTreeSuccess,onObjTreeError);
+			var frags = model.getFragmentList();
+			console.log(frags);
   }
+		function OnGetProperties_ofOne_Success(props){
+			//if(props.name.contains("Cracks") ) {
+				//console.log(props.name);
+			//}
+			var props2 = Object.values(props);
+			for(var j = 0; j < props2.length; j++){
+				var name1 = props2[j];//console.log(name1);
+				//if(name.contains("Cracks")){
+				//	console.log(props2);
+				//}
+				var props3 = Object.values(props2);
+				//console.log(props3);
+				var props4 = Object.values(props3);
+				var name2 = props4[3];
+				//console.log(props4);
+				//console.log(props4[1]);
+				//console.log(props4[2]);
+				//console.log(name2);
 
+				if(name2.contains("Crack")){
+					console.log(props4);
+					props4.forEach(function(x) {
+					console.log(x);	
+				});
+				}
+				//for(var k = 0;k < props4.length;k++){
+				//	console.log(props4[k]);	
+				//}
+			}
+		}
+		function OnGetProperties_ofOne_Error(err){
+			console.error('OnGetProperties_ofOne_Error() - errorCode:' + err);
+		}
+		function onObjTreeError(objTreeError){
+			console.error('onObjTreeError() - errorCode:' + objTreeError);
+		}
+  		function ongetBulkPropertiesSuccess(bProps){
+			console.log(bProps);
+		}
+		function ongetBulkPropertiesError(err){
+			console.error('ongetBulkPropertiesError() - errorCode:' + err);
+		}
+		
+		function onGetPropertiesSuccess(props){
+			console.log(props); 
+		}
+		function onGetPropertiesError(objTreeError){
+			console.error('onGetPropertiesError() - errorCode:' + onGetPropertiesError);
+		}
+		function onObjTreeSuccess(dat){
+			console.log(dat);
+			var childrn = dat.nodeAccess.children;
+			//console.log(childrn);
+			var ids = dat.nodeAccess.dbIdToIndex;
+			
+			viewer.getProperties(ids[2],OnGetProperties_ofOne_Success,OnGetProperties_ofOne_Error);
+			var queue = Object.values(ids);
+			console.log(queue);
+			for (var n = 0; n < queue.length; n++){
+				//console.log(queue[n]);
+				viewer.getProperties(queue[n],OnGetProperties_ofOne_Success,OnGetProperties_ofOne_Error);
+			}
+		}
+  
   ///////////////////////////////////////////////////////////////////////////
   // unload callback
   ///////////////////////////////////////////////////////////////////////////
