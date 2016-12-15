@@ -31,14 +31,14 @@ Autodesk.ADN.Viewing.Extension.MyExtension = function (viewer, options) {
     // need to access geometry? wait until is loaded
     viewer.addEventListener(Autodesk.Viewing.GEOMETRY_LOADED_EVENT, function(){
       // ToDo: viewer geometry is ready
-       GeometryRetrieve();
+       GeometryRetrieve(lmvDoc);
     });
 
     console.log('MyExtension loaded');
     return true;
   };
 
-  function GeometryRetrieve(){
+  function GeometryRetrieve(doc){
       //console.log(model);
 			//console.log(viewer);
 	var id = _model.getModelId();
@@ -47,13 +47,13 @@ Autodesk.ADN.Viewing.Extension.MyExtension = function (viewer, options) {
 	viewer.getObjectTree(onObjTreeSuccess,onObjTreeError);
 	var frags = _model.getFragmentList();
 	console.log(frags);
-      	var geometryItems = Autodesk.Viewing.Document.getSubItemsWithProperties(lvmDoc.getRootItem(), {
+      	var geometryItems = Autodesk.Viewing.Document.getSubItemsWithProperties(doc.getRootItem(), {
         'type': 'geometry',
       	}, true);
 	console.log(geometryItems);
 	var objCol = [];
 	geometryItems.forEach((item)=>{
-		objCol.push(lvmDoc.getViewablePath(item));
+		objCol.push(doc.getViewablePath(item));
 	});
 	console.log(objCol);
   }
