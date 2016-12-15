@@ -38,8 +38,7 @@ Autodesk.ADN.Viewing.Extension.MyExtension = function (viewer, options) {
     return true;
   };
 
-  function GeometryRetrieve(geoms){
-    console.log(geoms);
+  function GeometryRetrieve(){
       //console.log(model);
 			//console.log(viewer);
 	var id = _model.getModelId();
