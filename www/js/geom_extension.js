@@ -60,8 +60,8 @@ Autodesk.ADN.Viewing.Extension.MyExtension = function (viewer, options) {
 	var colFragIds = [];
 	colFragIds.push(idFrags);
 	console.log(colFragIds);
-	colFragIds.forEach(function(y)=>{
-			   getFragIdFromDbId(viewer, y.value);
+	colFragIds.forEach((y)=>{
+		getFragIdFromDbId(viewer, y.value);
 	});
   }
 
