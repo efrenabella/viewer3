@@ -190,13 +190,15 @@
 		}
 		
 		function OnGetProperties_ofOne_Success(props){
-			console.log(props);
 			//if(props.name.contains("Cracks") ) {
 				//console.log(props.name);
 			//}
-			//for(var j = 0; j < props.length; j++){
-				
-			//}
+			for(var j = 0; j < props.length; j++){
+				var name = props[j];
+				if(name.contains("Cracks")){
+					console.log(props);
+				}
+			}
 		}
 		function OnGetProperties_ofOne_Error(err){
 			console.error('OnGetProperties_ofOne_Error() - errorCode:' + err);
