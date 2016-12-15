@@ -193,8 +193,10 @@
 			//if(props.name.contains("Cracks") ) {
 				//console.log(props.name);
 			//}
-			for(var j = 0; j < props.length; j++){
-				var name = props[j];console.log(name);
+			var props2 = [];
+			Array.prototype.push.apply(props, props2);
+			for(var j = 0; j < props2.length; j++){
+				var name = props2[j];console.log(name);
 				if(name.contains("Cracks")){
 					console.log(props);
 				}
