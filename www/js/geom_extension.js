@@ -47,7 +47,7 @@ Autodesk.ADN.Viewing.Extension.MyExtension = function (viewer, options) {
 	viewer.getObjectTree(onObjTreeSuccess,onObjTreeError);
 	var frags = _model.getFragmentList();
 	console.log(frags);
-      	var geometryItems = Autodesk.Viewing.Document.getSubItemsWithProperties(lmvDoc.getRootItem(), {
+      	var geometryItems = Autodesk.Viewing.Document.getSubItemsWithProperties(lvmDoc.getRootItem(), {
         'type': 'geometry',
       	}, true);
 	console.log(geometryItems);
