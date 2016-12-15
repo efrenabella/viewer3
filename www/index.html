@@ -146,10 +146,11 @@ function onDocumentLoadSuccess(doc) {
          * Invoked after the model's SVF has been initially loaded.
          * It may trigger before any geometry has been downloaded and displayed on-screen.
          */
+	var _model;
         function onLoadModelSuccess(model) {
             console.log('onLoadModelSuccess()!');
             console.log('Validate model loaded: ' + (viewer.model === model));
-
+		_model = model;
 			//var ids = [5];
 			//model.getBulkProperties(ids, ongetBulkPropertiesSuccess,ongetBulkPropertiesError);
         }	
