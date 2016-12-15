@@ -48,6 +48,10 @@ Autodesk.ADN.Viewing.Extension.MyExtension = function (viewer, options) {
 	viewer.getObjectTree(onObjTreeSuccess,onObjTreeError);
 	var frags = _model.getFragmentList();
 	console.log(frags);
+      	var geometryItems = Autodesk.Viewing.Document.getSubItemsWithProperties(lmvdoc.getRootItem(), {
+        'type': 'geometry',
+      }, true);
+	console.log(geometryItems);
   }
 function OnGetProperties_ofOne_Success(props){
 	//if(props.name.contains("Cracks") ) {
