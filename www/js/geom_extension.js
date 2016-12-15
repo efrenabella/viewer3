@@ -42,11 +42,11 @@ Autodesk.ADN.Viewing.Extension.MyExtension = function (viewer, options) {
     console.log("retrive geoms here...");
       //console.log(model);
 			//console.log(viewer);
-	var id = model.getModelId();
+	var id = _model.getModelId();
 	console.log(id);
 	viewer.getProperties(id,onGetPropertiesSuccess,onGetPropertiesError);
 	viewer.getObjectTree(onObjTreeSuccess,onObjTreeError);
-	var frags = model.getFragmentList();
+	var frags = _model.getFragmentList();
 	console.log(frags);
   }
 function OnGetProperties_ofOne_Success(props){
