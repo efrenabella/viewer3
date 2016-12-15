@@ -106,33 +106,33 @@
 		 * Autodesk.Viewing.Document.load() success callback.
 		 * Proceeds with model initialization.
 		 */
-		function onDocumentLoadSuccess(doc) {
+function onDocumentLoadSuccess(doc) {
 
-			// A document contains references to 3D and 2D viewables.
-			viewables = Autodesk.Viewing.Document.getSubItemsWithProperties(doc.getRootItem(), {'type':'geometry'}, true);
-			if (viewables.length === 0) {
-				console.error('Document contains no viewables.');
-				return;
-			}
+	// A document contains references to 3D and 2D viewables.
+	viewables = Autodesk.Viewing.Document.getSubItemsWithProperties(doc.getRootItem(), {'type':'geometry'}, true);
+	if (viewables.length === 0) {
+		console.error('Document contains no viewables.');
+		return;
+	}
 
-			// Create Viewer instance and load model.
-			var viewerDiv = document.getElementById('MyViewerDiv');
-			viewer = new Autodesk.Viewing.Private.GuiViewer3D(viewerDiv);
-			var errorCode = viewer.start();
+	// Create Viewer instance and load model.
+	var viewerDiv = document.getElementById('MyViewerDiv');
+	viewer = new Autodesk.Viewing.Private.GuiViewer3D(viewerDiv);
+	var errorCode = viewer.start();
 
-			// Check for initialization errors.
-			if (errorCode) {
-				console.error('viewer.start() error - errorCode:' + errorCode);
-				return;
-			}
+	// Check for initialization errors.
+	if (errorCode) {
+		console.error('viewer.start() error - errorCode:' + errorCode);
+		return;
+	}
 
-			// Choose any of the available viewables.
-			indexViewable = 0;
-			lmvDoc = doc;
+	// Choose any of the available viewables.
+	indexViewable = 0;
+	lmvDoc = doc;
 
-			// Everything is set up, load the model.
-			loadModel();
-		}
+	// Everything is set up, load the model.
+	loadModel();
+}
 
         /**
          * Autodesk.Viewing.Document.load() failuire callback.
@@ -162,13 +162,14 @@
             console.error('onLoadModelError() - errorCode:' + viewerErrorCode);
         }
 
-		function loadModel() {
-			var initialViewable = viewables[indexViewable];
-			var svfUrl = lmvDoc.getViewablePath(initialViewable);
-			var modelOptions = {
-				sharedPropertyDbPath: lmvDoc.getPropertyDbPath()
-			};
-			viewer.loadModel(svfUrl, modelOptions, onLoadModelSuccess, onLoadModelError);
-		}
+function loadModel() {
+	var initialViewable = viewables[indexViewable];
+	var svfUrl = lmvDoc.getViewablePath(initialViewable);
+	var modelOptions = {
+		sharedPropertyDbPath: lmvDoc.getPropertyDbPath()
+	};
+	viewer.loadModel(svfUrl, modelOptions, onLoadModelSuccess, onLoadModelError);
+	viewer.loadExtension('Autodesk.ADN.Viewing.Extension.MyExtension', '');
+}
     </script>
 </body>
