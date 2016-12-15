@@ -55,7 +55,11 @@ Autodesk.ADN.Viewing.Extension.MyExtension = function (viewer, options) {
 	geometryItems.forEach((item)=>{
 		objCol.push(doc.getViewablePath(item));
 	});
-	console.log(objCol);
+	//console.log(objCol);
+	var idFrags = frags.fragments.fragId2dbId;
+	var colFragIds = [];
+	colFragIds.push(idFrags);
+	console.log(colFragIds);
   }
 
 function getFragIdFromDbId(viewer, dbid) {
@@ -89,7 +93,6 @@ function OnGetProperties_ofOne_Success(props){
 
 		if(name2.contains("Crack")){
 			console.log(props4);
-			getFragIdFromDbId(props4[0]);
 			props4.forEach(function(x) {
 			console.log(x);	});
 		}
