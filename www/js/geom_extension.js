@@ -104,11 +104,12 @@ function OnGetProperties_ofOne_Success(props){
 			var mesh = viewer.impl.getRenderProxy(_model, dbid);
 			var matrixWorld = mesh.matrixWorld;
 			var lmvBufferGeometry = mesh.geometry;
-			var lmvFloatArray = lmvBufferGeometry.vb;
+			console.log(lmvBufferGeometry);
+			/*var lmvFloatArray = lmvBufferGeometry.vb;
 			var x = lmvFloatArray[0];
 			var y = lmvFloatArray[1];
 			var z = lmvFloatArray[2];
-			console.log("x="+x + ";y="+y+";z="+z);
+			console.log("x="+x + ";y="+y+";z="+z);*/
 			});
 		}
 		//for(var k = 0;k < props4.length;k++){
