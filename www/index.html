@@ -19,6 +19,7 @@
     <link type="text/css" rel="stylesheet" href="https://developer.api.autodesk.com/viewingservice/v1/viewers/style.css" />
     <script src="https://developer.api.autodesk.com/viewingservice/v1/viewers/viewer3D.min.js"></script>
     <script src="https://rawgit.com/Developer-Autodesk/library-javascript-view.and.data.api/master/js/Autodesk.ADN.Toolkit.Viewer.js"></script>
+    <script src="/js/forge.js"></script>
     <script src="/js/geom_extension.js"></script>
     <!-- Developer CSS -->
     <style>
@@ -65,7 +66,7 @@
 					// }
 					//
 					//USE TUNNEL_F TEST PROJ
-					var accessToken = 'kLRUZmRC7I6z53kzEX3AkQodRFDP';
+					var accessToken = getForgeToken();// 'kLRUZmRC7I6z53kzEX3AkQodRFDP';
 					var expireTimeSeconds = 86400;
 					onGetAccessToken(accessToken, expireTimeSeconds);
 				}
