@@ -42,15 +42,15 @@ Autodesk.ADN.Viewing.Extension.MyExtension = function (viewer, options) {
       //console.log(model);
 			//console.log(viewer);
 	var id = _model.getModelId();
-	console.log(id);
+	//console.log(id);
 	viewer.getProperties(id,onGetPropertiesSuccess,onGetPropertiesError);
 	viewer.getObjectTree(onObjTreeSuccess,onObjTreeError);
 	var frags = _model.getFragmentList();
-	console.log(frags);
+	//console.log(frags);
       	var geometryItems = Autodesk.Viewing.Document.getSubItemsWithProperties(doc.getRootItem(), {
         'type': 'geometry',
       	}, true);
-	console.log(geometryItems);
+	//console.log(geometryItems);
 	var objCol = [];
 	geometryItems.forEach((item)=>{
 		objCol.push(doc.getViewablePath(item));
@@ -59,7 +59,7 @@ Autodesk.ADN.Viewing.Extension.MyExtension = function (viewer, options) {
 	var idFrags = frags.fragments.fragId2dbId;
 	var colFragIds = [];
 	colFragIds.push(idFrags);
-	console.log(colFragIds);
+	//console.log(colFragIds);
 	colFragIds.forEach((y)=>{
 		getFragIdFromDbId(viewer, y);
 		//console.log(y);
@@ -69,9 +69,9 @@ Autodesk.ADN.Viewing.Extension.MyExtension = function (viewer, options) {
 function getFragIdFromDbId(viewer, dbid) {
 	 var returnValue;
 	 var it = _model.getData().instanceTree;
-	 console.log(it);
+	 //console.log(it);
 	 it.enumNodeFragments(dbid, function (fragId) {
-	  console.log("dbId: " + dbid + " FragId : " + fragId);
+	  //console.log("dbId: " + dbid + " FragId : " + fragId);
 	  returnValue = fragId;
 	 }, false);
 	 return returnValue;
@@ -97,10 +97,18 @@ function OnGetProperties_ofOne_Success(props){
 		//console.log(name2);
 
 		if(name2.contains("Crack")){
-			console.log(props4);
-			props4.forEach(function(x) {
-			console.log(x);	
-			getFragIdFromDbId(viewer, x);
+			//console.log(props4);
+			props4.forEach(function(dbid) {
+			//console.log(dbid);	// ID
+			//getFragIdFromDbId(viewer, x);
+			var mesh = viewer.impl.getRenderProxy(_model, dbid);
+			var matrixWorld = mesh.matrixWorld;
+			var lmvBufferGeometry = mesh.geometry;
+			var lmvFloatArray = lmvBufferGeometry.vb;
+			var x = lmvFloatArray[0];
+			var y = lmvFloatArray[1];
+			var z = lmvFloatArray[2];
+			console.log("x="+x + ";y="+y+";z="+z);
 			});
 		}
 		//for(var k = 0;k < props4.length;k++){
@@ -122,20 +130,20 @@ function ongetBulkPropertiesError(err){
 }
 
 function onGetPropertiesSuccess(props){
-	console.log(props); 
+	//console.log(props); 
 }
 function onGetPropertiesError(objTreeError){
 	console.error('onGetPropertiesError() - errorCode:' + onGetPropertiesError);
 }
 function onObjTreeSuccess(dat){
-	console.log(dat);
+	//console.log(dat);
 	var childrn = dat.nodeAccess.children;
 	//console.log(childrn);
 	var ids = dat.nodeAccess.dbIdToIndex;
 
 	viewer.getProperties(ids[2],OnGetProperties_ofOne_Success,OnGetProperties_ofOne_Error);
 	var queue = Object.values(ids);
-	console.log(queue);
+	//console.log(queue);
 	for (var n = 0; n < queue.length; n++){
 		//console.log(queue[n]);
 		viewer.getProperties(queue[n],OnGetProperties_ofOne_Success,OnGetProperties_ofOne_Error);
