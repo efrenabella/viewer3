@@ -3,7 +3,7 @@
    ========================================================================== */
 
 body {
-  padding-top: 50px;
+  padding-top: 10px;
   padding-bottom: 20px;
   margin: 0;
 }
@@ -11,7 +11,7 @@ body {
 #viewerDiv {
   height: 480px; 
   width: 860px; 
-  margin-top: 50px;
+  margin-top: 10px;
   overflow: hidden; 
   position: relative;
 }
