@@ -114,7 +114,7 @@ function OnGetProperties_ofOne_Success(props){
 					if(!dicUniq[coord]){
 						console.log(lmvBufferGeometry);
 						console.log(coord);
-						dicUniq.push(key:coord, value:coord);
+						dicUniq.push({key:coord, value:coord});
 					}
 				}
 			});
