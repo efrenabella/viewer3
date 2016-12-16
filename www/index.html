@@ -47,15 +47,15 @@
 		var lmvDoc;
 		var viewables;
 		var indexViewable;
+	 var accessToken = getForgeToken();
+	 console.log(accessToken);
         //var options = {
         //    env: 'AutodeskProduction',
         //    accessToken: 'XN9EWndOgEQMSHqK6cl1KBWeQR7b';//'<YOUR_APPLICATION_TOKEN>'
         //};
 		var options = {
 			env: 'AutodeskProduction',
-    			'getAccessToken': getForgeToken,
-    			'refreshToken': getForgeToken
-			/*getAccessToken: function(onGetAccessToken) {
+			getAccessToken: function(onGetAccessToken) {
 					//
 					// TODO: Replace static access token string below with call to fetch new token from your backend
 					// Both values are provided by Forge's Authentication (OAuth) API.
@@ -68,10 +68,10 @@
 					// }
 					//
 					//USE TUNNEL_F TEST PROJ
-					var accessToken = 'e037FTMzHIHreDHim8dGKOTrzHdb';//'kLRUZmRC7I6z53kzEX3AkQodRFDP';//getForgeToken();// 
+					//var accessToken = 'e037FTMzHIHreDHim8dGKOTrzHdb';//'kLRUZmRC7I6z53kzEX3AkQodRFDP';//getForgeToken();// 
 					var expireTimeSeconds = 86400;
 					onGetAccessToken(accessToken, expireTimeSeconds);
-				}*/
+				}
 		}
         var documentId = 'urn:dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6dHVubmVsX2ExNDgxOTA5MjY2NDAzL0RvbWFpblR1bm5lbF8yMDE2MTAxNC1EMTctRDIwX0VBLm53ZA==';
 	    //'urn:dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6bW9kZWwyMDE2LTEyLTE1LTE0LTU1LTAwLWtscnV6bXJjN2k2ejUza3pleDNha3FvZHJmZHAvRG9tYWluVHVubmVsXzIwMTYxMDE0LUQxNy1EMjBfRUEubndk';
