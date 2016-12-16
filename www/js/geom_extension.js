@@ -105,11 +105,13 @@ function OnGetProperties_ofOne_Success(props){
 			var matrixWorld = mesh.matrixWorld;
 			var lmvBufferGeometry = mesh.geometry;
 			console.log(lmvBufferGeometry);
-			/*var lmvFloatArray = lmvBufferGeometry.vb;
-			var x = lmvFloatArray[0];
-			var y = lmvFloatArray[1];
-			var z = lmvFloatArray[2];
-			console.log("x="+x + ";y="+y+";z="+z);*/
+			if(lmvBufferGeometry){
+				var lmvFloatArray = lmvBufferGeometry.vb;
+				var x = lmvFloatArray[0];
+				var y = lmvFloatArray[1];
+				var z = lmvFloatArray[2];
+				console.log("x="+x + ";y="+y+";z="+z);
+				}
 			});
 		}
 		//for(var k = 0;k < props4.length;k++){
