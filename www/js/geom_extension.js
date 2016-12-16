@@ -81,6 +81,7 @@ function OnGetProperties_ofOne_Success(props){
 	//if(props.name.contains("Cracks") ) {
 		//console.log(props.name);
 	//}
+	var dicUniq = [];
 	var props2 = Object.values(props);
 	for(var j = 0; j < props2.length; j++){
 		var name1 = props2[j];//console.log(name1);
@@ -109,8 +110,12 @@ function OnGetProperties_ofOne_Success(props){
 				var x = lmvFloatArray[0];
 				var y = lmvFloatArray[1];
 				var z = lmvFloatArray[2];
-				console.log(lmvBufferGeometry);
-				console.log("x = "+ x + "; y = "+y+"; z = "+z);
+				var coord = "x = "+ x + "; y = "+y+"; z = "+z;
+					if(!dicUniq[coord]){
+						console.log(lmvBufferGeometry);
+						console.log(coord);
+						dicUniq.push(key:coord, value:coord);
+					}
 				}
 			});
 		}
