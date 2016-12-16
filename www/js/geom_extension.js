@@ -111,7 +111,6 @@ function OnGetProperties_ofOne_Success(props){
 				var z = lmvFloatArray[2];
 				console.log(lmvBufferGeometry);
 				console.log("x = "+ x + "; y = "+y+"; z = "+z);
-				break;
 				}
 			});
 		}
